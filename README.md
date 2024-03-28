@@ -1,8 +1,12 @@
 ![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg)
 
-# Tiny Tapeout Verilog Project Template
+# Tiny Tapeout ROM 256 Example
 
 - [Read the documentation for project](docs/info.md)
+
+## Updating the ROM contents
+
+Run `make -C src` to generate the .hex file for the ROM.
 
 ## What is Tiny Tapeout?
 

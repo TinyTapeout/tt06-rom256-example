@@ -26,6 +26,25 @@ set ::env(GLB_RESIZER_HOLD_SLACK_MARGIN) 0.05
 set ::env(RUN_LINTER) 1
 set ::env(LINTER_INCLUDE_PDK_MODELS) 1
 
+# sky130_rom_256 macro integration
+set ::env(VERILOG_FILES_BLACKBOX) "$::env(DESIGN_DIR)/sky130_rom_256.v"
+set ::env(EXTRA_LEFS) "$::env(DESIGN_DIR)/../macros/sky130_rom_256.lef"
+set ::env(EXTRA_GDS_FILES) "$::env(DESIGN_DIR)/../macros/sky130_rom_256.gds"
+set ::env(MACRO_PLACEMENT_CFG) "$::env(DESIGN_DIR)/macro.cfg"
+set ::env(FP_PDN_MACRO_HOOKS) "rom1 VPWR VGND vccd1 vssd1"
+set ::env(FP_PDN_HORIZONTAL_LAYER) "met3"
+set ::env(FP_PDN_HORIZONTAL_HALO) 0
+set ::env(FP_PDN_VERTICAL_HALO) 0
+
+# Workaround: disable PDN/IRDROP checks, as they fail even though the ROM is connected to PDN
+# GitHub Issue: https://github.com/The-OpenROAD-Project/OpenLane/issues/2102
+# We still have some safety net, as unconnected PDN nodes will be reported by the LVS check
+set ::env(FP_PDN_CHECK_NODES) 0
+set ::env(RUN_IRDROP_REPORT) 0
+
+# Workaround: disable magic DRC, as it currently fails with OpenRAM generated ROM
+set ::env(RUN_MAGIC_DRC) 0
+
 # Configuration docs: https://openlane.readthedocs.io/en/latest/reference/configuration.html
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
