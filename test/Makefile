@@ -28,6 +28,8 @@ VERILOG_SOURCES += $(PDK_ROOT)/sky130A/libs.ref/sky130_fd_sc_hd/verilog/sky130_f
 
 # this gets copied in by the GDS action workflow
 VERILOG_SOURCES += $(PWD)/gate_level_netlist.v
+# We also need the module for the ROM macro:
+VERILOG_SOURCES += $(SRC_DIR)/sky130_rom_256.v
 
 endif
 
